@@ -1,0 +1,33 @@
+<div class="table-container">
+    <button routerLink="/produto-servico/novo" class="btn btn-primary btn-novo">Novo</button>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Preço</th>
+                <th>Tipo</th>
+                <th>Situação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="itemList">
+            <tr *ngFor="let item of items">
+                <td>{{item.nome}}</td>
+                <td>{{item.descricao}}</td>
+                <td>{{item.preco}}</td>
+                <td>{{item.tipo}}</td>
+                <td>{{item.situacao}}</td>
+                <td>
+                    <button [routerLink]="['/produto-servico/editar', item.id]"
+                        class="btn btn-warning btn-sm">Editar</button>
+                    <button (click)="delete(item.id)" class="btn btn-danger btn-sm">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ngb-alert (closed)="ocultarAlerta()" *ngIf="alertMessage != ''" [dismissible]="true">
+        <strong>Warning! </strong>{{alertMessage}}
+    </ngb-alert>
+</div>

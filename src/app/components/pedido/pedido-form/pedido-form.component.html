@@ -1,0 +1,74 @@
+<div class="container">
+    <form id="itemForm" class="form-container">
+        <input type="hidden" id="id" />
+
+        <div>
+            <div class="form-group">
+                <label for="produtoServico">Produto/Serviço:</label>
+                <select [(ngModel)]="selectedProduto" id="produtoServico" name="produtoServico" class="form-control">
+                    <option *ngFor="let item of produtoServico" [ngValue]="item">
+                        {{ item.nome }}
+                    </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="quantidade">Quantidade:</label>
+                <input [(ngModel)]="quantidadeItem" type="number" id="quantidade" name="quantidade" class="form-control"
+                    placeholder="Quantidade" />
+            </div>
+
+            <button (click)="adicionarItem()" class="btn btn-primary btn-block btn-sm mt-2">
+                Adicionar
+            </button>
+
+        </div>
+
+        <div class="my-3" *ngIf="itensPedido.length == 0">
+            <p>Sem Itens Selecionados</p>
+        </div>
+
+        <div class="table-container" *ngIf="itensPedido.length > 0">
+            <table class="table table-striped table-bordered">
+                <tr>
+                    <th>Produto/Serviço</th>
+                    <th>Valor Unitário</th>
+                    <th>Quantidade</th>
+                    <th></th>
+                </tr>
+                <tr *ngFor="let item of itensPedido; let i = index">
+                    <td>{{item.produtoServico.nome}}</td>
+                    <td>{{item.produtoServico.preco}}</td>
+                    <td>{{item.quantidade}}</td>
+                    <td><button (click)="excluirItem(i)" class="btn btn-danger btn-sm">Excluir</button></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="form-group">
+            <label for="valorTotal">Valor Total:</label>
+            <input disabled="true" type="text" id="valorTotal" name="valorTotal" [(ngModel)]="this.pedido.valorTotal"
+                class="form-control" required placeholder="Valor Total" />
+        </div>
+
+        <div class="form-group">
+            <label for="percentualDesconto">Percentual Desconto:</label>
+            <input type="text" id="percentualDesconto" name="percentualDesconto"
+                [(ngModel)]="this.pedido.percentualDesconto" class="form-control" required
+                placeholder="Percentual Desconto" />
+        </div>
+
+
+        <div class="form-check mb-3">
+            <input type="checkbox" id="situacao" name="situacao" [(ngModel)]="this.pedido.situacao"
+                class="form-check-input" />
+            <label for="situacao" class="form-check-label">Aberto</label>
+        </div>
+
+        <button (click)="salvar()" class="btn btn-primary btn-block">Salvar</button>
+        <button routerLink="/pedido" class="btn btn-dark btn-block">Cancelar</button>
+        <ngb-alert (closed)="ocultarAlerta()" *ngIf="alertMessage != ''" [dismissible]="true">
+            <strong>Warning! </strong>{{alertMessage}}
+        </ngb-alert>
+    </form>
+</div>

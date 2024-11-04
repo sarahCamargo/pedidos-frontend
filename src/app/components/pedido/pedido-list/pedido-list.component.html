@@ -1,0 +1,27 @@
+<div class="table-container">
+    <button routerLink="/pedido/novo" class="btn btn-primary btn-novo">Novo</button>
+
+    <table class="table table-striped table-bordered">
+        <thead class="thead-dark">
+            <tr>
+                <th>ID</th>
+                <th>Valor Total</th>
+                <th>Desconto</th>
+                <th>Situação</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="itemList">
+            <tr *ngFor="let pedido of pedidos">
+                <td>{{pedido.id}}</td>
+                <td>{{pedido.valorTotal}}</td>
+                <td>{{pedido.percentualDesconto}}</td>
+                <td>{{pedido.situacao}}</td>
+                <td>
+                    <button [routerLink]="['/pedido/editar', pedido.id]" class="btn btn-warning btn-sm">Editar</button>
+                    <button (click)="delete(pedido.id)" class="btn btn-danger btn-sm">Excluir</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
