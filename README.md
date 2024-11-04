@@ -32,7 +32,7 @@ No diretório do projeto, execute o comando a seguir para instalar todas as depe
 npm install
 ```
 
-### 6. Iniciar o Servidor de Desenvolvimento
+### 4. Iniciar o Servidor de Desenvolvimento
 
 Para iniciar o servidor de desenvolvimento, execute o seguinte comando:
 
@@ -46,7 +46,7 @@ Se você não tiver o Angular CLI instalado, pode instalá-lo globalmente com o 
 npm install -g @angular/cli
 ```
 
-### 7. Acessar a Aplicação
+### 5. Acessar a Aplicação
 
 Após iniciar o servidor, abra um navegador e acesse a aplicação em:
 
